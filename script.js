@@ -7,9 +7,11 @@
 let currentLanguage = 'es'; // Default Spanish
 let translations = {};
 let properties = [];
-let currentTestimonial = 0;
+let currentAboutTestimonial = 0;
 let currentHeroSlide = 0;
+let currentAboutSlide = 0;
 let heroSlides = [];
+let aboutBackgrounds = [];
 
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', async () => {
@@ -20,10 +22,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize components
   initNavbar();
   initHeroSlider();
+  initAboutBackgrounds();
   initMobileMenu();
   initLanguageToggle();
   initScrollAnimations();
-  initTestimonials();
+  initAboutTestimonials();
   renderProperties();
   renderLocations();
   updateContent();
@@ -57,7 +60,7 @@ function initNavbar() {
   const navbar = document.querySelector('.navbar');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
@@ -74,25 +77,73 @@ function initNavbar() {
           behavior: 'smooth',
           block: 'start'
         });
-        // Close mobile menu if open
-        const mobileMenu = document.querySelector('.mobile-menu');
-        if (mobileMenu) {
-          mobileMenu.classList.remove('active');
+
+        // Close full screen menu if open
+        const fullScreenMenu = document.querySelector('.full-screen-menu');
+        if (fullScreenMenu && fullScreenMenu.classList.contains('active')) {
+          fullScreenMenu.classList.remove('active');
+          document.body.style.overflow = '';
         }
       }
     });
   });
 }
 
-// === MOBILE MENU ===
-function initMobileMenu() {
-  const toggle = document.querySelector('.mobile-menu-toggle');
-  const menu = document.querySelector('.mobile-menu');
+// === HERO SLIDER ===
+function initHeroSlider() {
+  const heroSlider = document.querySelector('.hero-slider');
+  const heroImages = [
+    'images/hero/hero_beachfront_villa_1766071844160.png',
+    'images/hero/hero_tulum_jungle_1766071862778.png',
+    'images/hero/hero_cancun_condo_1766071880927.png',
+    'images/hero/hero_bacalar_lakefront_1766071902073.png',
+    'images/hero/hero_playa_penthouse_1766071926554.png'
+  ];
 
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('active');
+  if (heroSlider) {
+    // Clear existing content
+    heroSlider.innerHTML = '';
+
+    // Create slides
+    heroImages.forEach((img, index) => {
+      const slide = document.createElement('div');
+      slide.className = `hero-slide ${index === 0 ? 'active' : ''}`;
+      slide.style.backgroundImage = `url('${img}')`;
+      heroSlider.appendChild(slide);
     });
+
+    // Auto-rotate
+    setInterval(() => {
+      const slides = document.querySelectorAll('.hero-slide');
+      if (slides.length > 0) {
+        slides[currentHeroIndex].classList.remove('active');
+        currentHeroIndex = (currentHeroIndex + 1) % slides.length;
+        slides[currentHeroIndex].classList.add('active');
+      }
+    }, 5000);
+  }
+}
+
+// === MOBILE MENU (FULL SCREEN) ===
+function initMobileMenu() {
+  const menuTrigger = document.querySelector('.menu-trigger');
+  const menuClose = document.querySelector('.menu-close');
+  const fullScreenMenu = document.querySelector('.full-screen-menu');
+  const menuLinks = document.querySelectorAll('.menu-link, .menu-list a');
+
+  function toggleMenu() {
+    if (fullScreenMenu) {
+      fullScreenMenu.classList.toggle('active');
+      document.body.style.overflow = fullScreenMenu.classList.contains('active') ? 'hidden' : '';
+    }
+  }
+
+  if (menuTrigger) {
+    menuTrigger.addEventListener('click', toggleMenu);
+  }
+
+  if (menuClose) {
+    menuClose.addEventListener('click', toggleMenu);
   }
 }
 
@@ -215,6 +266,41 @@ function nextHeroSlide() {
   slides[currentHeroSlide].classList.add('active');
 }
 
+// === ABOUT BACKGROUNDS ===
+function initAboutBackgrounds() {
+  // Reuse the same images from the hero section
+  aboutBackgrounds = [
+    'images/hero/property_hero_1.jpg',
+    'images/hero/property_hero_2.jpg',
+    'images/hero/property_hero_3.jpg',
+    'images/hero/property_hero_4.jpg',
+    'images/hero/property_hero_5.jpg'
+  ];
+
+  const sliderContainer = document.querySelector('.about-background-slider');
+  if (!sliderContainer) return;
+
+  // Create background slides
+  aboutBackgrounds.forEach((image, index) => {
+    const slide = document.createElement('div');
+    slide.className = `about-background-slide ${index === 0 ? 'active' : ''}`;
+    slide.style.backgroundImage = `url('${image}')`;
+    sliderContainer.appendChild(slide);
+  });
+
+  // Auto-rotate backgrounds every 8 seconds
+  setInterval(nextAboutBackground, 8000);
+}
+
+function nextAboutBackground() {
+  const slides = document.querySelectorAll('.about-background-slide');
+  if (slides.length === 0) return;
+
+  slides[currentAboutSlide].classList.remove('active');
+  currentAboutSlide = (currentAboutSlide + 1) % slides.length;
+  slides[currentAboutSlide].classList.add('active');
+}
+
 // === PROPERTIES ===
 function renderProperties() {
   const grid = document.getElementById('properties-grid');
@@ -250,13 +336,22 @@ function createPropertyCard(property, t) {
     <div class="property-details">
       <h3>${title}</h3>
       <div class="property-location">
-        <span>📍</span>
+        <svg class="icon-svg" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         <span>${property.location}</span>
       </div>
       <div class="property-specs">
-        <span>🛏️ ${property.beds} ${t?.featuredProperties?.beds || 'recámaras'}</span>
-        <span>🛁 ${property.baths} ${t?.featuredProperties?.baths || 'baños'}</span>
-        <span>📏 ${property.sqm_construction} m²</span>
+        <span>
+          <svg class="icon-svg" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg> 
+          ${property.beds} ${t?.featuredProperties?.beds || 'recámaras'}
+        </span>
+        <span>
+          <svg class="icon-svg" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6"></path><path d="M5 21h14"></path><path d="M5 21v-8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8"></path><path d="M17 9l-1.5-3"></path><path d="M2 10h20"></path></svg>
+          ${property.baths} ${t?.featuredProperties?.baths || 'baños'}
+        </span>
+        <span>
+          <svg class="icon-svg" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+          ${property.sqm_construction} m²
+        </span>
       </div>
     </div>
   `;
@@ -316,105 +411,96 @@ function renderLocations() {
   });
 }
 
-// === TESTIMONIALS ===
-function initTestimonials() {
+// === ABOUT TESTIMONIALS ===
+function initAboutTestimonials() {
   const testimonials = [
     {
-      text_es: "Gloria nos ayudó a encontrar nuestra casa de ensueño en Tulum. Su conocimiento del mercado y profesionalismo son excepcionales.",
-      text_en: "Gloria helped us find our dream home in Tulum. Her market knowledge and professionalism are exceptional.",
-      author: "María y Carlos Rodríguez",
-      property: "Villa Tulum"
+      text_es: "Excelente servicio y muy profesional. Gloria nos ayudó a encontrar la casa perfecta en Tulum.",
+      text_en: "Excellent service and very professional. Gloria helped us find the perfect home in Tulum.",
+      author: "Cliente Satisfecho"
     },
     {
-      text_es: "Excelente servicio desde el primer contacto hasta el cierre. Gloria hizo que todo el proceso fuera muy sencillo.",
-      text_en: "Excellent service from first contact to closing. Gloria made the entire process very simple.",
-      author: "John & Sarah Mitchell",
-      property: "Cancún Beachfront"
+      text_es: "100% recomendada. Conoce muy bien el mercado de Riviera Maya y es muy atenta.",
+      text_en: "100% recommended. She knows the Riviera Maya market very well and is very attentive.",
+      author: "Cliente Satisfecho"
     },
     {
-      text_es: "Como inversionista extranjero, aprecié mucho el apoyo legal y la transparencia de Gloria en cada paso.",
-      text_en: "As a foreign investor, I greatly appreciated Gloria's legal support and transparency at every step.",
-      author: "David Thompson",
-      property: "Playa del Carmen Condo"
+      text_es: "Great bilingual service! Gloria made our investment in Playa del Carmen smooth and easy.",
+      text_en: "Great bilingual service! Gloria made our investment in Playa del Carmen smooth and easy.",
+      author: "Satisfied Client"
     },
     {
-      text_es: "Gloria es increíblemente profesional y conocedora. Nos consiguió una propiedad increíble en Bacalar.",
-      text_en: "Gloria is incredibly professional and knowledgeable. She got us an amazing property in Bacalar.",
-      author: "Laura Martínez",
-      property: "Casa Bacalar"
+      text_es: "Profesional, dedicada y conocedora del mercado. La mejor experiencia comprando en Cancún.",
+      text_en: "Professional, dedicated and market-savvy. The best experience buying in Cancún.",
+      author: "Cliente Satisfecho"
     },
     {
-      text_es: "El mejor agente inmobiliario en Riviera Maya. Altamente recomendada para cualquier compra de propiedad.",
-      text_en: "The best real estate agent in Riviera Maya. Highly recommended for any property purchase.",
-      author: "Michael & Jennifer Lee",
-      property: "Puerto Morelos Home"
+      text_es: "Her expertise in luxury properties is outstanding. Highly recommend for international buyers.",
+      text_en: "Her expertise in luxury properties is outstanding. Highly recommend for international buyers.",
+      author: "Satisfied Client"
     },
     {
-      text_es: "Gloria superó todas nuestras expectativas. Su dedicación y atención al detalle son incomparables.",
-      text_en: "Gloria exceeded all our expectations. Her dedication and attention to detail are unmatched.",
-      author: "Roberto Sánchez",
-      property: "Zona Hotelera Investment"
+      text_es: "Atención personalizada de principio a fin. Gloria hizo todo el proceso muy fácil.",
+      text_en: "Personalized attention from start to finish. Gloria made the whole process very easy.",
+      author: "Cliente Satisfecho"
     }
   ];
 
-  const carousel = document.getElementById('testimonial-carousel');
-  const controls = document.getElementById('testimonial-controls');
+  const carousel = document.getElementById('about-testimonial-carousel');
+  const dots = document.getElementById('about-testimonial-dots');
 
-  if (!carousel || !controls) return;
+  if (!carousel || !dots) return;
 
   // Create testimonial slides
   testimonials.forEach((testimonial, index) => {
     const slide = document.createElement('div');
-    slide.className = `testimonial-slide ${index === 0 ? 'active' : ''}`;
+    slide.className = `about-testimonial-slide ${index === 0 ? 'active' : ''}`;
 
     const text = currentLanguage === 'es' ? testimonial.text_es : testimonial.text_en;
 
     slide.innerHTML = `
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"${text}"</p>
-      <p class="testimonial-author">${testimonial.author}</p>
-      <p class="testimonial-property">${testimonial.property}</p>
+      <p class="testimonial-quote">"${text}"</p>
+      <p class="testimonial-author">— ${testimonial.author}</p>
     `;
 
     carousel.appendChild(slide);
 
-    // Create control button
+    // Create dot button
     const button = document.createElement('button');
     button.className = index === 0 ? 'active' : '';
-    button.addEventListener('click', () => goToTestimonial(index));
-    controls.appendChild(button);
+    button.addEventListener('click', () => goToAboutTestimonial(index));
+    dots.appendChild(button);
   });
 
-  // Auto-rotate testimonials
-  setInterval(nextTestimonial, 6000);
+  // Auto-rotate testimonials every 5 seconds
+  setInterval(nextAboutTestimonial, 5000);
 }
 
-function nextTestimonial() {
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const buttons = document.querySelectorAll('.testimonial-controls button');
+function nextAboutTestimonial() {
+  const slides = document.querySelectorAll('.about-testimonial-slide');
+  const buttons = document.querySelectorAll('.about-testimonial-dots button');
 
   if (slides.length === 0) return;
 
-  slides[currentTestimonial].classList.remove('active');
-  buttons[currentTestimonial].classList.remove('active');
+  slides[currentAboutTestimonial].classList.remove('active');
+  buttons[currentAboutTestimonial].classList.remove('active');
 
-  currentTestimonial = (currentTestimonial + 1) % slides.length;
+  currentAboutTestimonial = (currentAboutTestimonial + 1) % slides.length;
 
-  slides[currentTestimonial].classList.add('active');
-  buttons[currentTestimonial].classList.add('active');
+  slides[currentAboutTestimonial].classList.add('active');
+  buttons[currentAboutTestimonial].classList.add('active');
 }
 
-function goToTestimonial(index) {
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const buttons = document.querySelectorAll('.testimonial-controls button');
+function goToAboutTestimonial(index) {
+  const slides = document.querySelectorAll('.about-testimonial-slide');
+  const buttons = document.querySelectorAll('.about-testimonial-dots button');
 
-  slides[currentTestimonial].classList.remove('active');
-  buttons[currentTestimonial].classList.remove('active');
+  slides[currentAboutTestimonial].classList.remove('active');
+  buttons[currentAboutTestimonial].classList.remove('active');
 
-  currentTestimonial = index;
-
-  slides[currentTestimonial].classList.add('active');
-  buttons[currentTestimonial].classList.add('active');
+  currentAboutTestimonial = index;
+  slides[currentAboutTestimonial].classList.add('active');
+  buttons[currentAboutTestimonial].classList.add('active');
 }
 
 // === WHATSAPP ===
