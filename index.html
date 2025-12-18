@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>GLOR Bienes Raíces | Luxury Real Estate Riviera Maya | Cancún Tulum Properties</title>
+  <meta name="description"
+    content="Find your dream property in Riviera Maya. Luxury homes, investment properties, and vacation rentals in Cancún, Tulum, Playa del Carmen. Bilingual service.">
+  <meta name="keywords"
+    content="riviera maya real estate, cancun properties, tulum homes, playa del carmen condos, bacalar lakefront, luxury mexico real estate, gloria lopez realtor">
+  <meta name="author" content="Gloria López - GLOR Bienes Raíces">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="GLOR Bienes Raíces | Luxury Real Estate Riviera Maya">
+  <meta property="og:description"
+    content="Find your dream property in Riviera Maya with Gloria López. 7+ years of experience in luxury real estate.">
+  <meta property="og:image" content="images/glor-logo.png">
+  <meta property="og:url" content="https://glorbienesraices.com">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/glor-logo.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Schema.org Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "GLOR Bienes Raíces",
+    "image": "images/gloria.jpg",
+    "description": "Luxury real estate agent specializing in Riviera Maya properties",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cancún",
+      "addressRegion": "Quintana Roo",
+      "addressCountry": "MX"
+    },
+    "telephone": "+52-984-269-5799",
+    "email": "glorbienesraices@gmail.com",
+    "url": "https://glorbienesraices.com",
+    "sameAs": [
+      "https://www.instagram.com/glotherealtor",
+      "https://www.facebook.com/glorbienesraices"
+    ],
+    "areaServed": [
+      "Cancún",
+      "Tulum",
+      "Playa del Carmen",
+      "Bacalar",
+      "Puerto Morelos",
+      "Akumal",
+      "Mérida"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#home">
+        <img src="images/glor-logo-new.jpg" alt="GLOR Bienes Raíces" class="navbar-logo">
+      </a>
+
+      <div class="navbar-menu">
+        <a href="#home" data-i18n="nav.home">Inicio</a>
+        <a href="#properties" data-i18n="nav.properties">Propiedades</a>
+        <a href="#about" data-i18n="nav.about">Acerca de</a>
+        <a href="#services" data-i18n="nav.services">Servicios</a>
+        <a href="#locations" data-i18n="nav.locations">Ubicaciones</a>
+        <a href="#contact" data-i18n="nav.contact">Contacto</a>
+
+        <div class="language-toggle">
+          <button id="lang-es" class="active">ES</button>
+          <button id="lang-en">EN</button>
+        </div>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Menu">☰</button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <a href="#home" data-i18n="nav.home">Inicio</a>
+      <a href="#properties" data-i18n="nav.properties">Propiedades</a>
+      <a href="#about" data-i18n="nav.about">Acerca de</a>
+      <a href="#services" data-i18n="nav.services">Servicios</a>
+      <a href="#locations" data-i18n="nav.locations">Ubicaciones</a>
+      <a href="#contact" data-i18n="nav.contact">Contacto</a>
+      <div class="language-toggle">
+        <button id="lang-es-mobile" class="active">ES</button>
+        <button id="lang-en-mobile">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section id="home" class="hero">
+    <div class="hero-slider"></div>
+
+    <div class="hero-search-bottom">
+      <div class="container">
+        <input type="text" placeholder="Buscar ubicación, tipo de propiedad..."
+          data-i18n-placeholder="hero.searchPlaceholder">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURED PROPERTIES ========== -->
+  <section id="properties" class="featured-properties">
+    <div class="container">
+      <h2 class="section-title fade-in" data-i18n="featuredProperties.title">Propiedades Destacadas</h2>
+
+      <div id="properties-grid" class="properties-grid">
+        <!-- Properties will be dynamically loaded here -->
+      </div>
+
+      <div class="view-all-properties fade-in">
+        <a href="#contact" class="btn btn-secondary">
+          <span data-i18n="featuredProperties.viewAll">Ver Todas las Propiedades</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT GLORIA ========== -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title fade-in" data-i18n="about.title">Conoce a Gloria</h2>
+
+      <div class="about-content">
+        <div class="about-image fade-in">
+          <img src="images/gloria.jpg" alt="Gloria López - GLOR Bienes Raíces">
+        </div>
+
+        <div class="about-text fade-in">
+          <h3 data-i18n="about.name">Gloria López</h3>
+          <p class="about-subtitle" data-i18n="about.subtitle">Agente Inmobiliaria Certificada | 7+ Años de Experiencia
+          </p>
+
+          <img src="images/glor-logo.png" alt="GLOR Logo" style="height: 80px; width: auto; margin: 1rem 0;">
+
+          <p class="about-description" data-i18n="about.description">
+            Con más de 7 años especializándome en propiedades de lujo en Riviera Maya,
+            ayudo a clientes internacionales y locales a encontrar sus casas de ensueño
+            y oportunidades de inversión. 100% recomendada por mis clientes.
+          </p>
+
+          <div class="about-highlights">
+            <div data-i18n="about.coverage">🏝️ Cobertura: Cancún | Tulum | Playa del Carmen | Bacalar | Puerto Morelos
+            </div>
+            <div data-i18n="about.bilingual">🌎 Servicio Bilingüe: Español e Inglés</div>
+            <div data-i18n="about.satisfaction">⭐ 100% Satisfacción del Cliente</div>
+            <div data-i18n="about.based">📍 Con base en Cancún, Quintana Roo</div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary">
+            <span data-i18n="about.contactButton">Contactar a Gloria</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="testimonials fade-in">
+        <h3 data-i18n="about.testimonialsTitle">Testimonios</h3>
+        <div id="testimonial-carousel" class="testimonial-carousel">
+          <!-- Testimonials will be dynamically loaded here -->
+        </div>
+        <div id="testimonial-controls" class="testimonial-controls">
+          <!-- Controls will be dynamically loaded here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title fade-in" data-i18n="services.title">Nuestros Servicios</h2>
+
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <div class="service-icon">🏠</div>
+          <h3 data-i18n="services.sales.title">Venta de Propiedades</h3>
+          <p data-i18n="services.sales.description">
+            Propiedades residenciales y de inversión en las mejores ubicaciones de Riviera Maya
+          </p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">🏖️</div>
+          <h3 data-i18n="services.rentals.title">Rentas Vacacionales</h3>
+          <p data-i18n="services.rentals.description">
+            Gestión y reservación de rentas a corto y largo plazo
+          </p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">📊</div>
+          <h3 data-i18n="services.advisory.title">Asesoría de Inversión</h3>
+          <p data-i18n="services.advisory.description">
+            Análisis de ROI y conocimientos del mercado para inversiones inteligentes
+          </p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">⚖️</div>
+          <h3 data-i18n="services.legal.title">Apoyo Legal</h3>
+          <p data-i18n="services.legal.description">
+            Orientación en procesos notariales, fideicomiso y cierre de operaciones
+          </p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">🔑</div>
+          <h3 data-i18n="services.management.title">Administración de Propiedades</h3>
+          <p data-i18n="services.management.description">
+            Servicio completo de cuidado y coordinación de mantenimiento de propiedades
+          </p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">🌎</div>
+          <h3 data-i18n="services.bilingual.title">Servicio Bilingüe</h3>
+          <p data-i18n="services.bilingual.description">
+            Servicio profesional en español e inglés
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LOCATIONS ========== -->
+  <section id="locations" class="locations">
+    <div class="container">
+      <h2 class="section-title fade-in" data-i18n="locations.title">Ubicaciones Riviera Maya</h2>
+
+      <div id="locations-grid" class="locations-grid">
+        <!-- Locations will be dynamically loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY CHOOSE GLOR ========== -->
+  <section id="why-choose" class="why-choose">
+    <div class="container">
+      <h2 class="section-title fade-in" data-i18n="whyChoose.title">¿Por Qué Elegir GLOR?</h2>
+
+      <div class="stats-grid">
+        <div class="stat-box fade-in">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label" data-i18n="whyChoose.satisfaction">Satisfacción del Cliente</div>
+        </div>
+
+        <div class="stat-box fade-in">
+          <div class="stat-icon">🏝️</div>
+          <div class="stat-number">9+</div>
+          <div class="stat-label" data-i18n="whyChoose.coverage">Áreas de Cobertura</div>
+        </div>
+
+        <div class="stat-box fade-in">
+          <div class="stat-icon">🏠</div>
+          <div class="stat-number">100+</div>
+          <div class="stat-label" data-i18n="whyChoose.propertiesSold">Propiedades Vendidas</div>
+        </div>
+
+        <div class="stat-box fade-in">
+          <div class="stat-icon">🌎</div>
+          <div class="stat-number">🇺🇸🇲🇽</div>
+          <div class="stat-label" data-i18n="whyChoose.bilingual">Servicio Bilingüe</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="contact">
+    <div class="contact-overlay"></div>
+    <div class="container">
+      <div class="contact-content fade-in">
+        <h2 data-i18n="contact.title">¿Listo para Encontrar tu Propiedad Soñada?</h2>
+        <p data-i18n="contact.subtitle">Comencemos tu viaje inmobiliario en Riviera Maya hoy.</p>
+
+        <div class="contact-buttons">
+          <a href="#" class="btn btn-whatsapp whatsapp-link">
+            📱 <span data-i18n="contact.whatsappButton">Mensaje por WhatsApp</span>
+          </a>
+          <a href="mailto:glorbienesraices@gmail.com" class="btn btn-secondary">
+            ✉️ <span data-i18n="contact.emailButton">Email</span>: glorbienesraices@gmail.com
+          </a>
+        </div>
+
+        <div class="contact-info">
+          <p><span data-i18n="contact.phone">📞 Teléfono</span>: +52 984-269-5799</p>
+          <p data-i18n="contact.schedule">Agenda tu visita o consulta hoy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <!-- Column 1: Logo & Tagline -->
+        <div class="footer-section">
+          <img src="images/glor-logo.png" alt="GLOR Bienes Raíces" class="footer-logo">
+          <p data-i18n="footer.tagline">Bienes Raíces de Lujo en Riviera Maya</p>
+          <p data-i18n="footer.subtitle">Cubriendo Cancún, Tulum, Playa del Carmen y Más</p>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-section">
+          <h3 data-i18n="footer.quickLinks">Enlaces Rápidos</h3>
+          <div class="footer-links">
+            <a href="#home" data-i18n="nav.home">Inicio</a>
+            <a href="#properties" data-i18n="nav.properties">Propiedades</a>
+            <a href="#about" data-i18n="nav.about">Acerca de</a>
+            <a href="#services" data-i18n="nav.services">Servicios</a>
+            <a href="#locations" data-i18n="nav.locations">Ubicaciones</a>
+            <a href="#contact" data-i18n="nav.contact">Contacto</a>
+          </div>
+        </div>
+
+        <!-- Column 3: Contact Info -->
+        <div class="footer-section">
+          <h3 data-i18n="footer.contactInfo">Información de Contacto</h3>
+          <div class="footer-contact">
+            <p>📞 +52 984-269-5799</p>
+            <p>✉️ glorbienesraices@gmail.com</p>
+            <p>📍 Cancún, Quintana Roo, México</p>
+          </div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/glotherealtor" target="_blank" aria-label="Instagram">📷</a>
+            <a href="https://www.facebook.com/glorbienesraices" target="_blank" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2024 GLOR Bienes Raíces | Todos los Derechos Reservados | Política de
+          Privacidad</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== FLOATING WHATSAPP BUTTON ========== -->
+  <div class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    💬
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>

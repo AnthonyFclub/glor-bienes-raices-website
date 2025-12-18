@@ -1,0 +1,200 @@
+{
+    "es": {
+        "nav": {
+            "home": "Inicio",
+            "properties": "Propiedades",
+            "about": "Acerca de",
+            "services": "Servicios",
+            "locations": "Ubicaciones",
+            "contact": "Contacto"
+        },
+        "hero": {
+            "title": "GLOR BIENES RAÍCES",
+            "subtitle": "Bienes Raíces de Lujo en Riviera Maya",
+            "searchPlaceholder": "Buscar ubicación, tipo de propiedad...",
+            "searchButton": "Buscar",
+            "whatsappButton": "Contactar por WhatsApp",
+            "browseButton": "Ver Propiedades"
+        },
+        "featuredProperties": {
+            "title": "Propiedades Destacadas",
+            "beds": "recámaras",
+            "baths": "baños",
+            "viewDetails": "Ver Detalles",
+            "viewAll": "Ver Todas las Propiedades"
+        },
+        "about": {
+            "title": "Conoce a Gloria",
+            "name": "Gloria López",
+            "subtitle": "Agente Inmobiliaria Certificada | 7+ Años de Experiencia",
+            "description": "Con más de 7 años especializándome en propiedades de lujo en Riviera Maya, ayudo a clientes internacionales y locales a encontrar sus casas de ensueño y oportunidades de inversión. 100% recomendada por mis clientes.",
+            "coverage": "Cobertura: Cancún | Tulum | Playa del Carmen | Bacalar | Puerto Morelos",
+            "bilingual": "Servicio Bilingüe: Español e Inglés",
+            "satisfaction": "100% Satisfacción del Cliente",
+            "based": "Con base en Cancún, Quintana Roo",
+            "contactButton": "Contactar a Gloria",
+            "testimonialsTitle": "Testimonios"
+        },
+        "services": {
+            "title": "Nuestros Servicios",
+            "sales": {
+                "title": "Venta de Propiedades",
+                "description": "Propiedades residenciales y de inversión en las mejores ubicaciones de Riviera Maya"
+            },
+            "rentals": {
+                "title": "Rentas Vacacionales",
+                "description": "Gestión y reservación de rentas a corto y largo plazo"
+            },
+            "advisory": {
+                "title": "Asesoría de Inversión",
+                "description": "Análisis de ROI y conocimientos del mercado para inversiones inteligentes"
+            },
+            "legal": {
+                "title": "Apoyo Legal",
+                "description": "Orientación en procesos notariales, fideicomiso y cierre de operaciones"
+            },
+            "management": {
+                "title": "Administración de Propiedades",
+                "description": "Servicio completo de cuidado y coordinación de mantenimiento de propiedades"
+            },
+            "bilingual": {
+                "title": "Servicio Bilingüe",
+                "description": "Servicio profesional en español e inglés"
+            }
+        },
+        "locations": {
+            "title": "Ubicaciones Riviera Maya",
+            "viewProperties": "Ver Propiedades en",
+            "cancun": "Vida resort y centro de inversión",
+            "playaDelCarmen": "Centro vibrante y estilo de vida playero",
+            "tulum": "Lujo bohemio y cenotes",
+            "puertoMorelos": "Encanto tranquilo y familiar",
+            "bacalar": "Laguna mágica y escape natural",
+            "akumal": "Bahía de tortugas y paraíso del buceo",
+            "merida": "Elegancia colonial y cultura",
+            "chetumal": "Ciudad capital y centro de negocios",
+            "zonaHotelera": "Corredor turístico y alto ROI"
+        },
+        "whyChoose": {
+            "title": "¿Por Qué Elegir GLOR?",
+            "satisfaction": "Satisfacción del Cliente",
+            "coverage": "Áreas de Cobertura",
+            "propertiesSold": "Propiedades Vendidas",
+            "bilingual": "Servicio Bilingüe"
+        },
+        "contact": {
+            "title": "¿Listo para Encontrar tu Propiedad Soñada?",
+            "subtitle": "Comencemos tu viaje inmobiliario en Riviera Maya hoy.",
+            "whatsappButton": "Mensaje por WhatsApp",
+            "emailButton": "Email",
+            "phone": "Teléfono",
+            "schedule": "Agenda tu visita o consulta hoy."
+        },
+        "footer": {
+            "tagline": "Bienes Raíces de Lujo en Riviera Maya",
+            "subtitle": "Cubriendo Cancún, Tulum, Playa del Carmen y Más",
+            "quickLinks": "Enlaces Rápidos",
+            "contactInfo": "Información de Contacto",
+            "copyright": "© 2024 GLOR Bienes Raíces | Todos los Derechos Reservados | Política de Privacidad"
+        }
+    },
+    "en": {
+        "nav": {
+            "home": "Home",
+            "properties": "Properties",
+            "about": "About",
+            "services": "Services",
+            "locations": "Locations",
+            "contact": "Contact"
+        },
+        "hero": {
+            "title": "GLOR BIENES RAÍCES",
+            "subtitle": "Luxury Real Estate in Riviera Maya",
+            "searchPlaceholder": "Search location, property type...",
+            "searchButton": "Search",
+            "whatsappButton": "Contact via WhatsApp",
+            "browseButton": "Browse Properties"
+        },
+        "featuredProperties": {
+            "title": "Featured Properties",
+            "beds": "beds",
+            "baths": "baths",
+            "viewDetails": "View Details",
+            "viewAll": "View All Properties"
+        },
+        "about": {
+            "title": "Meet Gloria",
+            "name": "Gloria López",
+            "subtitle": "Licensed Real Estate Agent | 7+ Years Experience",
+            "description": "With over 7 years specializing in Riviera Maya luxury properties, I help international and local clients find their dream homes and investment opportunities. 100% recommended by my clients.",
+            "coverage": "Coverage: Cancún | Tulum | Playa del Carmen | Bacalar | Puerto Morelos",
+            "bilingual": "Bilingual Service: Spanish & English",
+            "satisfaction": "100% Client Satisfaction Rating",
+            "based": "Based in Cancún, Quintana Roo",
+            "contactButton": "Contact Gloria",
+            "testimonialsTitle": "Testimonials"
+        },
+        "services": {
+            "title": "Our Services",
+            "sales": {
+                "title": "Property Sales",
+                "description": "Residential and investment properties in prime Riviera Maya locations"
+            },
+            "rentals": {
+                "title": "Vacation Rentals",
+                "description": "Short and long-term rental management and booking"
+            },
+            "advisory": {
+                "title": "Investment Advisory",
+                "description": "ROI analysis and market insights for smart investments"
+            },
+            "legal": {
+                "title": "Legal Support",
+                "description": "Guidance through notary, fideicomiso, and closing process"
+            },
+            "management": {
+                "title": "Property Management",
+                "description": "Full-service property care and maintenance coordination"
+            },
+            "bilingual": {
+                "title": "Bilingual Service",
+                "description": "Professional service in Spanish and English"
+            }
+        },
+        "locations": {
+            "title": "Riviera Maya Locations",
+            "viewProperties": "View Properties in",
+            "cancun": "Resort living & investment hub",
+            "playaDelCarmen": "Vibrant downtown & beach lifestyle",
+            "tulum": "Bohemian luxury & cenotes",
+            "puertoMorelos": "Quiet charm & family-friendly",
+            "bacalar": "Magical lagoon & nature escape",
+            "akumal": "Turtle bay & diving paradise",
+            "merida": "Colonial elegance & culture",
+            "chetumal": "Capital city & business center",
+            "zonaHotelera": "Tourist corridor & high ROI"
+        },
+        "whyChoose": {
+            "title": "Why Choose GLOR?",
+            "satisfaction": "Client Satisfaction",
+            "coverage": "Coverage Areas",
+            "propertiesSold": "Properties Sold",
+            "bilingual": "Bilingual Service"
+        },
+        "contact": {
+            "title": "Ready to Find Your Dream Property?",
+            "subtitle": "Let's start your Riviera Maya real estate journey today.",
+            "whatsappButton": "Message on WhatsApp",
+            "emailButton": "Email",
+            "phone": "Phone",
+            "schedule": "Schedule your property viewing or consultation today."
+        },
+        "footer": {
+            "tagline": "Luxury Real Estate in Riviera Maya",
+            "subtitle": "Serving Cancún, Tulum, Playa del Carmen & More",
+            "quickLinks": "Quick Links",
+            "contactInfo": "Contact Information",
+            "copyright": "© 2024 GLOR Bienes Raíces | All Rights Reserved | Privacy Policy"
+        }
+    }
+}
