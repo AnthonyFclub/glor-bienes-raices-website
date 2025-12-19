@@ -454,10 +454,12 @@ p {
   font-size: 48px;
   font-weight: 700;
   letter-spacing: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
+  /* Reset bottom margin, using subtitle top margin instead */
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
   line-height: 1.2;
   text-transform: uppercase;
+  text-align: left;
 }
 
 .hero-subtitle {
@@ -467,9 +469,11 @@ p {
   font-weight: 300;
   letter-spacing: normal;
   max-width: 600px;
-  margin: 0;
+  margin: 16px 0 0 0;
+  /* Top margin 16px as requested */
   line-height: 1.6;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
 }
 
 /* Responsive Adjustments for Hero Text Position */
@@ -479,13 +483,7 @@ p {
     left: 60px;
   }
 
-  .hero-title {
-    font-size: 36px;
-  }
-
-  .hero-subtitle {
-    font-size: 16px;
-  }
+  /* Intermediate size if needed, or stick to desktop default until 768 */
 }
 
 @media (max-width: 768px) {
@@ -495,11 +493,12 @@ p {
   }
 
   .hero-title {
-    font-size: 28px;
+    font-size: 36px;
+    letter-spacing: 2px;
   }
 
   .hero-subtitle {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
