@@ -292,57 +292,61 @@ p {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.text-logo {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-decoration: none;
+  align-items: center;
 }
 
-.brand-line-1 {
+.brand-header {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.brand-main {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 72px;
   color: #FFFFFF;
   letter-spacing: 8px;
   text-transform: uppercase;
-  line-height: 1;
+  white-space: nowrap;
   text-align: center;
+  line-height: 1.1;
+  margin: 0;
 }
 
-.brand-line-2 {
+.brand-subtitle {
   font-family: 'Playfair Display', serif;
-  /* Or 'Montserrat' italic if preferred, using Playfair Italic as per request */
   font-style: italic;
   font-weight: 300;
   font-size: 24px;
-  color: rgba(255, 255, 255, 0.9);
+  color: #FFFFFF;
+  opacity: 0.9;
   letter-spacing: 2px;
-  margin-top: 8px;
   text-align: center;
+  margin-top: 8px;
+  white-space: nowrap;
 }
 
-/* Tablet Adjustments for Logo */
-@media (max-width: 1024px) {
-  .brand-line-1 {
+@media (max-width: 1199px) {
+  .brand-main {
     font-size: 48px;
+    letter-spacing: 6px;
   }
 
-  .brand-line-2 {
+  .brand-subtitle {
     font-size: 18px;
   }
 }
 
-/* Mobile Adjustments for Logo */
-@media (max-width: 768px) {
-  .brand-line-1 {
+@media (max-width: 767px) {
+  .brand-main {
     font-size: 36px;
+    letter-spacing: 4px;
   }
 
-  .brand-line-2 {
+  .brand-subtitle {
     font-size: 14px;
   }
 }
