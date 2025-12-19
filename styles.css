@@ -189,10 +189,9 @@ p {
   box-shadow: var(--shadow-lg);
 }
 
-/* === NAVIGATION (Strict Layout) === */
+/* === NAVIGATION === */
 .navigation-bar,
 .navbar {
-  /* Merging strict user layout with existing fixed positioning */
   position: fixed;
   top: 0;
   left: 0;
@@ -210,14 +209,12 @@ p {
 .navbar.scrolled {
   background: rgba(20, 20, 20, 0.95);
   padding: 10px 60px;
-  /* Reduced padding on scroll */
 }
 
 .nav-left {
   display: flex;
   gap: 30px;
   flex: 1;
-  /* Occupy left space */
   justify-content: flex-start;
 }
 
@@ -225,44 +222,44 @@ p {
   display: flex;
   gap: 30px;
   flex: 1;
-  /* Occupy right space */
   justify-content: flex-end;
   align-items: center;
 }
 
-/* BRAND HEADER - ABSOLUTE CENTER */
+/* BRAND HEADER - ABSOLUTE CENTER - ESTILO AARON KIRMAN */
 .brand-header {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   z-index: 10;
-  /* Ensure it doesn't get covered */
+  pointer-events: none;
 }
 
 .brand-main {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 48px;
-  /* Strict requirement */
+  font-size: 72px;
   color: #FFFFFF;
-  letter-spacing: 6px;
+  letter-spacing: 8px;
   text-transform: uppercase;
   white-space: nowrap;
   margin: 0;
   line-height: 1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .brand-subtitle {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 24px;
   color: #FFFFFF;
   opacity: 0.9;
   letter-spacing: 2px;
   margin-top: 4px;
   white-space: nowrap;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Nav Item Styles */
@@ -285,7 +282,7 @@ p {
 }
 
 .nav-link:hover {
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .chevron {
@@ -333,6 +330,36 @@ p {
   padding-left: 2rem;
 }
 
+.nav-contact {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-contact:hover {
+  color: var(--primary);
+}
+
+.nav-icon {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-icon:hover {
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
 /* Mobile Adjustments */
 @media (max-width: 1024px) {
 
@@ -342,28 +369,34 @@ p {
     display: none;
   }
 
-  /* When nav-left is hidden, we need to ensure brand takes center */
-  .brand-header {
-    /* Keep centered */
-  }
-
   .nav-right {
     justify-content: flex-end;
   }
 
-  .navbar .navigation-bar {
+  .navbar,
+  .navigation-bar {
     padding: 10px 20px;
+  }
+
+  .brand-main {
+    font-size: 42px;
+    letter-spacing: 5px;
+  }
+
+  .brand-subtitle {
+    font-size: 18px;
   }
 }
 
 @media (max-width: 768px) {
   .brand-main {
-    font-size: 28px;
+    font-size: 32px;
     letter-spacing: 3px;
   }
 
   .brand-subtitle {
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 1px;
   }
 }
 
@@ -424,7 +457,6 @@ p {
   z-index: 1;
   padding: 0;
   max-width: none;
-  /* Removed centering max-width */
 }
 
 .hero-title {
@@ -433,7 +465,6 @@ p {
   font-weight: 700;
   letter-spacing: 4px;
   margin-bottom: 16px;
-  /* Updated margin */
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
   line-height: 1.2;
   text-transform: uppercase;
@@ -445,10 +476,8 @@ p {
   color: rgba(255, 255, 255, 0.9);
   font-weight: 300;
   letter-spacing: normal;
-  /* Reset or keep minimal */
   max-width: 600px;
   margin: 0;
-  /* Reset auto margin */
   line-height: 1.6;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -504,8 +533,8 @@ p {
 }
 
 .hero-cta:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
+  background: var(--primary);
+  border-color: var(--primary);
   transform: scale(1.05);
 }
 
@@ -540,8 +569,6 @@ p {
 }
 
 @media (max-width: 768px) {
-
-  /* Removed hero-title override as it is handled in the main block above */
   .hero-cta {
     bottom: 2rem;
     right: 50%;
@@ -555,7 +582,6 @@ p {
 }
 
 /* === SECTION SPACING === */
-/* === SECTION SPACING & BACKGROUNDS === */
 section {
   padding: var(--spacing-xxl) 0;
   position: relative;
@@ -1135,7 +1161,7 @@ section {
   }
 }
 
-/* Remove old testimonials section styles (now integrated in About) */
+/* Remove old testimonials section styles */
 .testimonials {
   display: none;
 }
@@ -1262,7 +1288,6 @@ section {
 .why-choose {
   position: relative;
   z-index: 0;
-  /* background: var(--bg-light); - Removed to show background image */
 }
 
 .why-glor-grid {
@@ -1476,8 +1501,6 @@ section {
   font-size: 0.875rem;
 }
 
-
-
 /* === FADE IN ANIMATION === */
 .fade-in {
   opacity: 0;
@@ -1528,7 +1551,6 @@ section {
   .hero-search {
     padding: var(--spacing-sm);
   }
-
 }
 
 /* === FULL SCREEN MENU === */
@@ -1567,7 +1589,7 @@ section {
 
 .menu-close:hover {
   transform: rotate(90deg);
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .menu-container {
@@ -1618,7 +1640,7 @@ section {
 }
 
 .menu-link:hover {
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .menu-list {
@@ -1672,7 +1694,12 @@ section {
 }
 
 .menu-footer-col a:hover {
-  color: var(--primary-color);
+  color: var(--primary);
+}
+
+.menu-coverage {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .menu-social {
@@ -1687,7 +1714,7 @@ section {
 
 .menu-social a:hover {
   transform: translateY(-3px);
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 @media (max-width: 1024px) {
@@ -1705,5 +1732,15 @@ section {
   .menu-close {
     top: 1.5rem;
     right: 1.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
