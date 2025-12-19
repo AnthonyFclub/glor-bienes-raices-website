@@ -189,13 +189,18 @@ p {
   box-shadow: var(--shadow-lg);
 }
 
-/* === NAVIGATION === */
+/* === NAVIGATION (Strict Layout) === */
+.navigation-bar,
 .navbar {
+  /* Merging strict user layout with existing fixed positioning */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
   background: rgba(30, 30, 30, 0.4);
   backdrop-filter: blur(10px);
   z-index: 1000;
@@ -204,23 +209,63 @@ p {
 
 .navbar.scrolled {
   background: rgba(20, 20, 20, 0.95);
-  padding: 1rem 0;
+  padding: 10px 60px;
+  /* Reduced padding on scroll */
 }
 
-.navbar .container-fluid {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 3rem;
-  width: 100%;
-}
-
-/* Left: Dropdowns */
 .nav-left {
   display: flex;
-  gap: 2rem;
+  gap: 30px;
+  flex: 1;
+  /* Occupy left space */
+  justify-content: flex-start;
 }
 
+.nav-right {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+  /* Occupy right space */
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* BRAND HEADER - ABSOLUTE CENTER */
+.brand-header {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  /* Ensure it doesn't get covered */
+}
+
+.brand-main {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 48px;
+  /* Strict requirement */
+  color: #FFFFFF;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin: 0;
+  line-height: 1;
+}
+
+.brand-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  color: #FFFFFF;
+  opacity: 0.9;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+/* Nav Item Styles */
 .nav-item {
   position: relative;
 }
@@ -236,6 +281,7 @@ p {
   align-items: center;
   gap: 0.5rem;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -287,97 +333,6 @@ p {
   padding-left: 2rem;
 }
 
-/* Center: Logo */
-.nav-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.brand-header {
-  text-align: center;
-  position: relative;
-  z-index: 10;
-}
-
-.brand-main {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 72px;
-  color: #FFFFFF;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-align: center;
-  line-height: 1.1;
-  margin: 0;
-}
-
-.brand-subtitle {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 24px;
-  color: #FFFFFF;
-  opacity: 0.9;
-  letter-spacing: 2px;
-  text-align: center;
-  margin-top: 8px;
-  white-space: nowrap;
-}
-
-@media (max-width: 1199px) {
-  .brand-main {
-    font-size: 48px;
-    letter-spacing: 6px;
-  }
-
-  .brand-subtitle {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 767px) {
-  .brand-main {
-    font-size: 36px;
-    letter-spacing: 4px;
-  }
-
-  .brand-subtitle {
-    font-size: 14px;
-  }
-}
-
-/* Right: Actions */
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.nav-contact {
-  color: #fff;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  font-weight: 500;
-}
-
-.nav-icon {
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.2s ease;
-}
-
-.nav-icon:hover {
-  transform: scale(1.1);
-}
-
 /* Mobile Adjustments */
 @media (max-width: 1024px) {
 
@@ -387,8 +342,28 @@ p {
     display: none;
   }
 
-  .navbar .container-fluid {
-    padding: 0 1.5rem;
+  /* When nav-left is hidden, we need to ensure brand takes center */
+  .brand-header {
+    /* Keep centered */
+  }
+
+  .nav-right {
+    justify-content: flex-end;
+  }
+
+  .navbar .navigation-bar {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-main {
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .brand-subtitle {
+    font-size: 12px;
   }
 }
 
