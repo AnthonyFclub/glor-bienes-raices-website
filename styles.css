@@ -936,70 +936,47 @@ section {
 }
 
 /* === ABOUT GLORIA === */
+/* === ABOUT GLORIA === */
 .about {
   position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: var(--spacing-xxl) 0;
+  /* min-height removed, padding adjustments */
+  padding: 80px 0;
+  background-color: #FFFFFF;
   overflow: hidden;
+  min-height: auto;
+  /* Override previous min-height */
+  display: block;
+  /* Override flex */
 }
 
-/* Rotating Background Slider */
-.about-background-slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.about-background-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  background-size: cover;
-  background-position: center;
-  filter: blur(2px);
-}
-
-.about-background-slide.active {
-  opacity: 1;
-}
-
-/* Dark Overlay for Readability */
+/* Remove old background/overlay styles */
+.about-background-slider,
+.about-background-slide,
 .about-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%);
-  z-index: 1;
+  display: none;
 }
 
 .about-container {
   position: relative;
   z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Two-Column Grid Layout */
 /* Two-Column Grid Layout */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-xl);
+  gap: 40px;
   align-items: start;
 }
 
 @media (min-width: 768px) {
   .about-grid {
     grid-template-columns: 40% 60%;
-    gap: var(--spacing-xxl);
+    gap: 60px;
+    align-items: center;
   }
 }
 
@@ -1011,11 +988,13 @@ section {
 }
 
 .about-photo-wrapper {
+  position: relative;
   width: 100%;
   max-width: 400px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-xl);
+  border: 5px solid #FFFFFF;
   transition: transform var(--transition-normal);
 }
 
@@ -1030,15 +1009,17 @@ section {
 }
 
 /* RIGHT COLUMN: Content */
+/* RIGHT COLUMN: Content */
 .about-content-column {
-  color: var(--bg-white);
+  color: #4B5563;
+  text-align: left;
 }
 
 .about-content-column * {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: none !important;
 }
 
-/* Header */
+/* Text color adjustment for dark backgrounds */
 #properties .section-title,
 #services .section-title,
 #services .service-card h3,
@@ -1048,46 +1029,61 @@ section {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Header */
 .about-header {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 24px;
 }
 
 .about-name {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
   font-weight: 400;
-  /* Updated to Regular */
-  margin-bottom: 0.5rem;
-  color: var(--bg-white);
+  /* Regular */
+  margin-bottom: 12px;
+  color: #1F2937;
+  line-height: 1.2;
+  letter-spacing: 0;
 }
 
 .about-subtitle {
-  font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin-bottom: 24px;
 }
 
 /* Description */
 .about-description {
-  font-size: 1.125rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
   line-height: 1.8;
-  margin-bottom: var(--spacing-lg);
-  color: var(--bg-white);
+  margin-bottom: 32px;
+  color: #4B5563;
+  max-width: 600px;
 }
 
 /* Key Points - Clean Bullets */
+/* Key Points - Clean Bullets */
 .about-key-points {
   list-style: none;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 32px;
   padding-left: 0;
 }
 
 .about-key-points li {
   position: relative;
   padding-left: 2rem;
-  margin-bottom: var(--spacing-sm);
-  font-size: 1rem;
+  margin-bottom: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #374151;
   line-height: 1.6;
-  color: var(--bg-white);
 }
 
 .about-key-points li::before {
@@ -1097,39 +1093,46 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: var(--secondary);
-  color: var(--bg-white);
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 0.875rem;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 /* Contact Info */
 .about-contact-info {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .contact-icon {
   font-size: 1.5rem;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  filter: none;
 }
 
 .contact-item a {
-  color: var(--bg-white);
-  font-size: 1.125rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #1F2937;
+  font-size: 18px;
+  font-weight: 400;
   text-decoration: none;
   transition: color var(--transition-fast);
+  line-height: 1.5;
 }
 
 .contact-item a:hover {
@@ -1140,32 +1143,39 @@ section {
 /* Social Media Buttons */
 .about-social-media {
   display: flex;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .social-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.2);
+  width: 48px;
+  height: 48px;
+  background: transparent;
   border-radius: 50%;
   transition: all var(--transition-normal);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  box-shadow: none;
+  border: 1px solid rgba(20, 184, 166, 0.2);
 }
 
 .social-btn:hover {
-  background: var(--secondary);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
+  background: rgba(20, 184, 166, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--secondary);
+  box-shadow: none;
 }
 
 .social-icon {
-  font-size: 1.75rem;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  width: 24px;
+  height: 24px;
+  color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  filter: none;
 }
 
 /* CTA Button */
