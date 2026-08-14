@@ -89,40 +89,6 @@ function initNavbar() {
   });
 }
 
-// === HERO SLIDER ===
-function initHeroSlider() {
-  const heroSlider = document.querySelector('.hero-slider');
-  const heroImages = [
-    'images/hero/hero_beachfront_villa_1766071844160.png',
-    'images/hero/hero_tulum_jungle_1766071862778.png',
-    'images/hero/hero_cancun_condo_1766071880927.png',
-    'images/hero/hero_bacalar_lakefront_1766071902073.png',
-    'images/hero/hero_playa_penthouse_1766071926554.png'
-  ];
-
-  if (heroSlider) {
-    // Clear existing content
-    heroSlider.innerHTML = '';
-
-    // Create slides
-    heroImages.forEach((img, index) => {
-      const slide = document.createElement('div');
-      slide.className = `hero-slide ${index === 0 ? 'active' : ''}`;
-      slide.style.backgroundImage = `url('${img}')`;
-      heroSlider.appendChild(slide);
-    });
-
-    // Auto-rotate
-    setInterval(() => {
-      const slides = document.querySelectorAll('.hero-slide');
-      if (slides.length > 0) {
-        slides[currentHeroIndex].classList.remove('active');
-        currentHeroIndex = (currentHeroIndex + 1) % slides.length;
-        slides[currentHeroIndex].classList.add('active');
-      }
-    }, 5000);
-  }
-}
 
 // === MOBILE MENU (FULL SCREEN) ===
 function initMobileMenu() {
@@ -234,22 +200,69 @@ function updateContent() {
 
 // === HERO SLIDER ===
 function initHeroSlider() {
-  heroSlides = [
-    'images/hero/property_hero_1.jpg',
-    'images/hero/property_hero_2.jpg',
-    'images/hero/property_hero_3.jpg',
-    'images/hero/property_hero_4.jpg',
-    'images/hero/property_hero_5.jpg'
-  ];
-
   const sliderContainer = document.querySelector('.hero-slider');
   if (!sliderContainer) return;
 
-  // Create slides
-  heroSlides.forEach((image, index) => {
+  // Build slides from featured properties with gallery photos
+  const slideSources = [];
+
+  const featuredWithGallery = properties.filter(p => p.featured && Array.isArray(p.gallery) && p.gallery.length > 0);
+
+  if (featuredWithGallery.length > 0) {
+    featuredWithGallery.forEach(prop => {
+      prop.gallery.forEach(imgPath => {
+        slideSources.push({ image: imgPath, property: prop });
+      });
+    });
+  } else {
+    // Fallback: original stock images, no overlay
+    const fallbackImages = [
+      'images/hero/hero_beachfront_villa_1766071844160.png',
+      'images/hero/hero_tulum_jungle_1766071862778.png',
+      'images/hero/hero_cancun_condo_1766071880927.png',
+      'images/hero/hero_bacalar_lakefront_1766071902073.png',
+      'images/hero/hero_playa_penthouse_1766071926554.png'
+    ];
+    fallbackImages.forEach(img => slideSources.push({ image: img, property: null }));
+  }
+
+  // Store in global array
+  heroSlides = slideSources.map(s => s.image);
+
+  // Set initial blurred backdrop image
+  const backdrop = document.querySelector('.hero-overlay');
+  if (backdrop && heroSlides.length > 0) {
+    backdrop.style.backgroundImage = `url('${heroSlides[0]}')`;
+  }
+
+  // Clear container and build slides
+  sliderContainer.innerHTML = '';
+
+  slideSources.forEach(({ image, property }, index) => {
     const slide = document.createElement('div');
     slide.className = `hero-slide ${index === 0 ? 'active' : ''}`;
     slide.style.backgroundImage = `url('${image}')`;
+
+    // Property info overlay (top-right, discrete)
+    if (property) {
+      const title = currentLanguage === 'es' ? property.title_es : property.title_en;
+
+      let priceText = '';
+      if (property.price_mxn_renta) {
+        priceText = `Renta $${formatPrice(property.price_mxn_renta)} MXN/mes`;
+      } else if (property.price_mxn_venta) {
+        priceText = `Venta $${formatPrice(property.price_mxn_venta)} MXN`;
+      }
+
+      const overlay = document.createElement('div');
+      overlay.className = 'hero-slide-info';
+      overlay.innerHTML = `
+        <span class="hero-slide-title">${title}</span>
+        ${priceText ? `<span class="hero-slide-price">${priceText}</span>` : ''}
+      `;
+      slide.appendChild(overlay);
+    }
+
     sliderContainer.appendChild(slide);
   });
 
@@ -264,6 +277,12 @@ function nextHeroSlide() {
   slides[currentHeroSlide].classList.remove('active');
   currentHeroSlide = (currentHeroSlide + 1) % slides.length;
   slides[currentHeroSlide].classList.add('active');
+
+  // Update blurred backdrop
+  const backdrop = document.querySelector('.hero-overlay');
+  if (backdrop && heroSlides[currentHeroSlide]) {
+    backdrop.style.backgroundImage = `url('${heroSlides[currentHeroSlide]}')`;
+  }
 }
 
 // === ABOUT BACKGROUNDS ===
@@ -323,12 +342,37 @@ function createPropertyCard(property, t) {
   card.className = 'property-card fade-in';
 
   const title = currentLanguage === 'es' ? property.title_es : property.title_en;
-  const description = currentLanguage === 'es' ? property.description_es : property.description_en;
+
+  // Build listing-type badges
+  const listingTypes = Array.isArray(property.listing_type) ? property.listing_type : [];
+  const badgesHTML = listingTypes.map(type => {
+    if (type === 'venta') {
+      return `<span class="listing-badge listing-badge--venta">VENTA</span>`;
+    } else if (type === 'renta') {
+      return `<span class="listing-badge listing-badge--renta">RENTA</span>`;
+    }
+    return '';
+  }).join('');
+
+  // Build price rows
+  const priceLines = [];
+  if (property.price_mxn_venta) {
+    priceLines.push(`<div class="property-price-row"><span class="price-label">Venta</span> $${formatPrice(property.price_mxn_venta)} MXN</div>`);
+  }
+  if (property.price_mxn_renta) {
+    priceLines.push(`<div class="property-price-row"><span class="price-label">Renta</span> $${formatPrice(property.price_mxn_renta)} MXN/mes</div>`);
+  }
+  // Fallback for legacy price fields
+  if (!priceLines.length && property.price_usd) {
+    priceLines.push(`<div class="property-price-row">$${formatPrice(property.price_usd)} USD</div>`);
+  }
+  const pricesHTML = priceLines.join('');
 
   card.innerHTML = `
     <div class="property-image-wrapper">
       <img src="${property.image}" alt="${title}" class="property-image">
-      <div class="property-price">$${formatPrice(property.price_usd)} USD</div>
+      <div class="property-badges">${badgesHTML}</div>
+      <div class="property-price">${pricesHTML}</div>
       <div class="property-overlay">
         <span>${t?.featuredProperties?.viewDetails || 'Ver Detalles'}</span>
       </div>
