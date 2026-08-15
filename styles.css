@@ -457,18 +457,20 @@ p {
   transform: scale(1.1);
 }
 
-/* Property info overlay inside the inset slide container */
+/* Property info overlay inside the inset slide container (Static badge, z-index above zooming photos) */
 .hero-slide-info {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 24px;
+  right: 28px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.3rem;
-  z-index: 5;
+  z-index: 10;
   text-align: right;
   pointer-events: none;
+  transition: opacity 0.35s ease;
+  max-width: 320px;
 }
 
 .hero-slide-title {
@@ -477,8 +479,7 @@ p {
   font-weight: 500;
   color: #fff;
   letter-spacing: 0.03em;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
-  max-width: 260px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
   line-height: 1.3;
 }
 
@@ -486,24 +487,26 @@ p {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.88);
   letter-spacing: 0.04em;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 768px) {
   .hero-slide-info {
-    top: 20px;
-    right: 20px;
+    top: 14px;
+    right: 16px;
+    max-width: 190px;
+    gap: 0.25rem;
   }
 
   .hero-slide-title {
-    font-size: 0.8rem;
-    max-width: 180px;
+    font-size: 0.78rem;
+    line-height: 1.25;
   }
 
   .hero-slide-price {
-    font-size: 0.65rem;
+    font-size: 0.64rem;
   }
 }
 

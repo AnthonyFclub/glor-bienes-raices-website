@@ -153,6 +153,9 @@ function switchLanguage(lang) {
   // Update all content
   updateContent();
   renderProperties();
+  if (heroSlideSources.length > 0) {
+    updateHeroSlideInfo(heroSlideSources[currentHeroSlide]?.property);
+  }
 
   // Store preference
   localStorage.setItem('preferredLanguage', lang);
@@ -202,21 +205,34 @@ function updateContent() {
 }
 
 // === HERO SLIDER ===
+let heroSlideSources = [];
+
 function initHeroSlider() {
   const sliderContainer = document.querySelector('.hero-slider');
   if (!sliderContainer) return;
 
   // Build slides from featured properties with gallery photos
-  const slideSources = [];
+  heroSlideSources = [];
 
   const featuredWithGallery = properties.filter(p => p.featured && Array.isArray(p.gallery) && p.gallery.length > 0);
 
   if (featuredWithGallery.length > 0) {
-    featuredWithGallery.forEach(prop => {
-      prop.gallery.forEach(imgPath => {
-        slideSources.push({ image: imgPath, property: prop });
-      });
+    // Sort so Midtown (id 9) starts first, followed by other properties
+    const sortedProps = [...featuredWithGallery].sort((a, b) => {
+      if (a.id === 9) return -1;
+      if (b.id === 9) return 1;
+      return 0;
     });
+
+    // Interleave gallery photos across properties
+    const maxGalleryLen = Math.max(...sortedProps.map(p => p.gallery.length));
+    for (let i = 0; i < maxGalleryLen; i++) {
+      sortedProps.forEach(prop => {
+        if (prop.gallery[i]) {
+          heroSlideSources.push({ image: prop.gallery[i], property: prop });
+        }
+      });
+    }
   } else {
     // Fallback: original stock images, no overlay
     const fallbackImages = [
@@ -226,11 +242,11 @@ function initHeroSlider() {
       'images/hero/hero_bacalar_lakefront_1766071902073.png',
       'images/hero/hero_playa_penthouse_1766071926554.png'
     ];
-    fallbackImages.forEach(img => slideSources.push({ image: img, property: null }));
+    fallbackImages.forEach(img => heroSlideSources.push({ image: img, property: null }));
   }
 
   // Store in global array
-  heroSlides = slideSources.map(s => s.image);
+  heroSlides = heroSlideSources.map(s => s.image);
 
   // Set initial blurred backdrop image
   const backdrop = document.querySelector('.hero-overlay');
@@ -241,36 +257,51 @@ function initHeroSlider() {
   // Clear container and build slides
   sliderContainer.innerHTML = '';
 
-  slideSources.forEach(({ image, property }, index) => {
+  heroSlideSources.forEach(({ image }, index) => {
     const slide = document.createElement('div');
     slide.className = `hero-slide ${index === 0 ? 'active' : ''}`;
     slide.style.backgroundImage = `url('${image}')`;
-
-    // Property info overlay (top-right, discrete)
-    if (property) {
-      const title = currentLanguage === 'es' ? property.title_es : property.title_en;
-
-      let priceText = '';
-      if (property.price_mxn_renta) {
-        priceText = `Renta $${formatPrice(property.price_mxn_renta)} MXN/mes`;
-      } else if (property.price_mxn_venta) {
-        priceText = `Venta $${formatPrice(property.price_mxn_venta)} MXN`;
-      }
-
-      const overlay = document.createElement('div');
-      overlay.className = 'hero-slide-info';
-      overlay.innerHTML = `
-        <span class="hero-slide-title">${title}</span>
-        ${priceText ? `<span class="hero-slide-price">${priceText}</span>` : ''}
-      `;
-      slide.appendChild(overlay);
-    }
-
     sliderContainer.appendChild(slide);
   });
 
+  // Create single static property info badge on top of slider (stays fixed, does not scale with photo)
+  const infoOverlay = document.createElement('div');
+  infoOverlay.className = 'hero-slide-info';
+  sliderContainer.appendChild(infoOverlay);
+
+  // Render initial slide info
+  updateHeroSlideInfo(heroSlideSources[0]?.property);
+
   // Auto-rotate slides
   setInterval(nextHeroSlide, 5000);
+}
+
+function updateHeroSlideInfo(property) {
+  const infoEl = document.querySelector('.hero-slide-info');
+  if (!infoEl) return;
+
+  if (!property) {
+    infoEl.style.opacity = '0';
+    return;
+  }
+
+  const title = currentLanguage === 'es' ? property.title_es : property.title_en;
+
+  let priceText = '';
+  if (property.price_mxn_renta) {
+    priceText = `Renta $${formatPrice(property.price_mxn_renta)} MXN/mes`;
+  } else if (property.price_mxn_venta) {
+    priceText = `Venta $${formatPrice(property.price_mxn_venta)} MXN`;
+  }
+
+  infoEl.style.opacity = '0';
+  setTimeout(() => {
+    infoEl.innerHTML = `
+      <span class="hero-slide-title">${title}</span>
+      ${priceText ? `<span class="hero-slide-price">${priceText}</span>` : ''}
+    `;
+    infoEl.style.opacity = '1';
+  }, 200);
 }
 
 function nextHeroSlide() {
@@ -280,6 +311,9 @@ function nextHeroSlide() {
   slides[currentHeroSlide].classList.remove('active');
   currentHeroSlide = (currentHeroSlide + 1) % slides.length;
   slides[currentHeroSlide].classList.add('active');
+
+  // Update static property info badge
+  updateHeroSlideInfo(heroSlideSources[currentHeroSlide]?.property);
 
   // Update blurred backdrop
   const backdrop = document.querySelector('.hero-overlay');
