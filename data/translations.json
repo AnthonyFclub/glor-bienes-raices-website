@@ -3,7 +3,7 @@
         "nav": {
             "home": "Inicio",
             "properties": "Propiedades",
-            "about": "Acerca de",
+            "about": "Acerca de Nosotros",
             "services": "Servicios",
             "locations": "Ubicaciones",
             "contact": "Contacto"
@@ -24,11 +24,14 @@
             "viewAll": "Ver Todas las Propiedades"
         },
         "about": {
-            "title": "Conoce a Gloria",
+            "title": "Acerca de Nosotros",
+            "historyTitle": "Nuestra Historia",
+            "teamTitle": "Nuestro Equipo",
+            "roleAgent": "Agente Inmobiliario",
             "fullName": "Gloria Alejandra López",
             "name": "Gloria López",
-            "subtitle": "Agente Inmobiliaria Certificada | 7+ Años de Experiencia",
-            "description": "Con más de 7 años especializándome en propiedades de lujo en Riviera Maya, ayudo a clientes internacionales y locales a encontrar sus casas de ensueño y oportunidades de inversión. 100% recomendada por mis clientes.",
+            "subtitle": "Agente Inmobiliaria Certificada | 10+ Años de Experiencia",
+            "description": "Con más de 10 años especializándome en propiedades de lujo en Riviera Maya, ayudo a clientes internacionales y locales a encontrar sus casas de ensueño y oportunidades de inversión. 100% recomendada por mis clientes.",
             "coverage": "Cobertura: Cancún | Tulum | Playa del Carmen | Bacalar | Puerto Morelos",
             "bilingual": "Servicio Bilingüe: Español e Inglés",
             "satisfaction": "100% Satisfacción del Cliente",
@@ -78,6 +81,7 @@
         },
         "whyChoose": {
             "title": "¿Por Qué Elegir GLOR?",
+            "subtitle": "Expertos en propiedades patrimoniales de lujo, desarrollos e inversiones en Riviera Maya, con trayectoria comprobada.",
             "satisfaction": "Satisfacción del Cliente",
             "coverage": "Áreas de Cobertura",
             "propertiesSold": "Propiedades Vendidas",
@@ -96,14 +100,14 @@
             "subtitle": "Cubriendo Cancún, Tulum, Playa del Carmen y Más",
             "quickLinks": "Enlaces Rápidos",
             "contactInfo": "Información de Contacto",
-            "copyright": "© 2024 GLOR Bienes Raíces | Todos los Derechos Reservados | Política de Privacidad"
+            "copyright": "© {year} GLOR Bienes Raíces | Todos los Derechos Reservados | Política de Privacidad"
         }
     },
     "en": {
         "nav": {
             "home": "Home",
             "properties": "Properties",
-            "about": "About",
+            "about": "About Us",
             "services": "Services",
             "locations": "Locations",
             "contact": "Contact"
@@ -124,11 +128,14 @@
             "viewAll": "View All Properties"
         },
         "about": {
-            "title": "Meet Gloria",
+            "title": "About Us",
+            "historyTitle": "Our Story",
+            "teamTitle": "Our Team",
+            "roleAgent": "Real Estate Agent",
             "fullName": "Gloria Alejandra López",
             "name": "Gloria López",
-            "subtitle": "Licensed Real Estate Agent | 7+ Years Experience",
-            "description": "With over 7 years specializing in Riviera Maya luxury properties, I help international and local clients find their dream homes and investment opportunities. 100% recommended by my clients.",
+            "subtitle": "Licensed Real Estate Agent | 10+ Years Experience",
+            "description": "With over 10 years specializing in Riviera Maya luxury properties, I help international and local clients find their dream homes and investment opportunities. 100% recommended by my clients.",
             "coverage": "Coverage: Cancún | Tulum | Playa del Carmen | Bacalar | Puerto Morelos",
             "bilingual": "Bilingual Service: Spanish & English",
             "satisfaction": "100% Client Satisfaction Rating",
@@ -178,6 +185,7 @@
         },
         "whyChoose": {
             "title": "Why Choose GLOR?",
+            "subtitle": "Experts in luxury heritage properties, developments, and investments in the Riviera Maya, with a proven track record.",
             "satisfaction": "Client Satisfaction",
             "coverage": "Coverage Areas",
             "propertiesSold": "Properties Sold",
@@ -196,7 +204,7 @@
             "subtitle": "Serving Cancún, Tulum, Playa del Carmen & More",
             "quickLinks": "Quick Links",
             "contactInfo": "Contact Information",
-            "copyright": "© 2024 GLOR Bienes Raíces | All Rights Reserved | Privacy Policy"
+            "copyright": "© {year} GLOR Bienes Raíces | All Rights Reserved | Privacy Policy"
         }
     }
 }

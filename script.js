@@ -174,6 +174,9 @@ function updateContent() {
     }
 
     if (value) {
+      if (typeof value === 'string') {
+        value = value.replace(/\{year\}|2024/g, new Date().getFullYear());
+      }
       element.textContent = value;
     }
   });
